@@ -9,12 +9,16 @@ function send404Message(response) {
 
 function onRequest(request, response) {
 
-    if (request.method == 'GET' && request.url == '/') {
-        response.writeHead(200, { "Context-Type": "text/html" });
-        fs.createReadStream("./index.html").pipe(response);
-    } else if (response.method == 'GET' && response.url == '/a.html') {
-        response.writeHead(200, { "Context-Type": "text/html" });
-        fs.createReadStream("./a.html").pipe(response);
+    if (request.method == 'GET') {
+        console.log(request.url);
+        if (request.url == '/' || request.url == "/index.html") {
+            response.writeHead(200, { "Context-Type": "text/html" });
+            fs.createReadStream("./index.html").pipe(response);
+        } else if (request.url == "/a.html") {
+            console.log(1);
+            response.writeHead(200, { "Context-Type": "text/html" });
+            fs.createReadStream("./a.html").pipe(response);
+        }
     } else {
         send404Message(response);
     }
