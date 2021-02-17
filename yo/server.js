@@ -7,12 +7,19 @@ var mysql = require('mysql');
 
 
 var app = express();
-const connection = mysql.createConnection({
+let connection = mysql.createConnection({
     host: 'localhost',
-    user: 'root',
-    password: 'fbehddls147!',
+    user: 'testuser',
+    password: 'fbehddls1',
     database: 'test'
 });
+
+try {
+    connection.connect();
+    console.log("뙜다");
+} catch (error) {
+    console.log("흠");
+}
 
 app.use(express.static(path.join(__dirname, 'public')))
 app.use(bodyParser.urlencoded({ extended: false }));
@@ -43,13 +50,12 @@ app.get('/index.html', function(req, res) {
 });
 
 app.post('/login', function(req, res) {
-    var sql = "INSERT INTO test_table (id, password, name, age) VALUES(?, ?, ?, ?)";
-    var params = ["rjinsa98", "fbehddls1", "Ryu", 26];
-    connection.query(sql, params, function(err, rows, fields) {
+    var sql = "SELECT * FROM test_table";
+    connection.query(sql, function(err, result) {
         if (err) {
-            console.log("fucked...");
+            throw (err);
         } else {
-            console.log("됐다 시팔");
+            console.log(result);
         }
     });
     fs.readFile('a.html', function(error, data) {
@@ -64,14 +70,13 @@ app.post('/login', function(req, res) {
 
 app.get('/a.html', function(req, res) {
     var sql = "SELECT * FROM test_table";
-    connection.query(sql, function(err, rows, fields) {
+    connection.query(sql, function(err, result) {
         if (err) {
-            console.log("fucked...");
+            throw (err);
         } else {
             console.log("됐다 시팔");
         }
     });
-
     fs.readFile('a.html', function(error, data) {
         if (error) {
             console.log(error);
