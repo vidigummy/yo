@@ -7,27 +7,50 @@ var fs = require('fs');
 var app = express();
 app.use(express.static(path.join(__dirname, 'public')))
 app.use(bodyParser.urlencoded({ extended: false }));
+app.listen(3000, function() {
 
-
-function send404Message(response) {
-    response.writeHead(404, { "Content-Type": "text/plain" });
-    response.write("404 ERROR...");
-    response.end();
-}
-
-app.get("/", function(req, res) {
-    console.log(2);
-    res.writeHead("200", { "Content-Type": "text/html;charset=utf8" });
-    fs.createReadStream('./index.html');
-    res.sendfile(path.join(__dirname, 'index.html'));
 });
 
-app.post("/login", function(req, res) {
-    console.log("user!");
-    var uld = req.param("uid");
-    console.log(uld);
+app.get('/', function(req, res) {
+    fs.readFile('index.html', function(error, data) {
+        if (error) {
+            console.log(error);
+        } else {
+            res.writeHead(200, { 'Content-Type': 'text/html' });
+            res.end(data);
+        }
+    });
 });
 
-http.createServer(app).listen(3000, function() {
-    console.log("start");
+app.get('/index.html', function(req, res) {
+    fs.readFile('index.html', function(error, data) {
+        if (error) {
+            console.log(error);
+        } else {
+            res.writeHead(200, { 'Content-Type': 'text/html' });
+            res.end(data);
+        }
+    });
+});
+
+app.post('/login', function(req, res) {
+    fs.readFile('a.html', function(error, data) {
+        if (error) {
+            console.log(error);
+        } else {
+            res.writeHead(200, { 'Content_Type': 'text/html' });
+            res.end(data);
+        }
+    });
+});
+
+app.get('/a', function(req, res) {
+    fs.readFile('a.html', function(error, data) {
+        if (error) {
+            console.log(error);
+        } else {
+            res.writeHead(200, { 'Content_Type': 'text/html' });
+            res.end(data);
+        }
+    });
 });
