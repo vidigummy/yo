@@ -3,12 +3,21 @@ var express = require('express');
 var path = require('path');
 var bodyParser = require('body-parser');
 var fs = require('fs');
+var mysql = require('mysql');
+
 
 var app = express();
+const connection = mysql.createConnection({
+    host: 'localhost',
+    user: 'testuser',
+    password: 'fbehddls1',
+    database: 'test'
+});
+
 app.use(express.static(path.join(__dirname, 'public')))
 app.use(bodyParser.urlencoded({ extended: false }));
 app.listen(3000, function() {
-
+    console.log("server start");
 });
 
 app.get('/', function(req, res) {
