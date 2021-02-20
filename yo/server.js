@@ -22,7 +22,8 @@ try {
 }
 
 app.use(express.static(path.join(__dirname, 'public')))
-app.use(bodyParser.urlencoded({ extended: false }));
+app.use(bodyParser.urlencoded({ extended: true }));
+app.use(bodyParser.json());
 app.listen(3000, function() {
     console.log("server start");
 });
@@ -50,12 +51,14 @@ app.get('/index.html', function(req, res) {
 });
 
 app.post('/login', function(req, res) {
-    var sql = "SELECT * FROM test_table";
-    connection.query(sql, function(err, result) {
+    var sql = "INSERT INTO test_table(id,password,name,age) VALUES(?,?,?,?)";
+    var par = [req.body.uid, req.body.upw, req.body.uname, Number(req.body.uage)]
+
+    connection.query(sql, function(err, par, result) {
         if (err) {
             throw (err);
         } else {
-            console.log(result);
+            console.log("yes");
         }
     });
     fs.readFile('a.html', function(error, data) {
@@ -74,7 +77,7 @@ app.get('/a.html', function(req, res) {
         if (err) {
             throw (err);
         } else {
-            console.log("됐다 시팔");
+            console.log(result);
         }
     });
     fs.readFile('a.html', function(error, data) {
