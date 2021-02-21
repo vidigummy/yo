@@ -51,10 +51,10 @@ app.get('/index.html', function(req, res) {
 });
 
 app.post('/login', function(req, res) {
-    var sql = "INSERT INTO test_table(id,password,name,age) VALUES(?,?,?,?)";
-    var par = [req.body.uid, req.body.upw, req.body.uname, Number(req.body.uage)]
+    var sql = "INSERT INTO test_table (id, password, name, age) VALUES (?,?,?,?)";
+    var par = [req.body.uid, req.body.upw, req.body.uname, Number(req.body.uage)];
 
-    connection.query(sql, function(err, par, result) {
+    connection.query(sql, par, function(err, result) {
         if (err) {
             throw (err);
         } else {
