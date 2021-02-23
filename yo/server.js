@@ -28,6 +28,34 @@ app.listen(3000, function() {
     console.log("server start");
 });
 
+
+app.get('/', function(req, res) {
+    res.json({ hi: 1, });
+});
+
+
+
+app.post('/:id', function(req, res) {
+    res.json({ ryu: 2, });
+});
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+/*
 app.get('/', function(req, res) {
     fs.readFile('index.html', function(error, data) {
         if (error) {
@@ -89,3 +117,4 @@ app.get('/a.html', function(req, res) {
         }
     });
 });
+*/
