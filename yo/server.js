@@ -4,7 +4,8 @@ var path = require('path');
 var bodyParser = require('body-parser');
 var fs = require('fs');
 var mysql = require('mysql');
-
+const router = require('express').Router();
+const controller = require('./controller');
 
 var app = express();
 let connection = mysql.createConnection({
