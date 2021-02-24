@@ -17,8 +17,10 @@ class test {
 
     }
     showAll() {
-        connection.query(sql, function(err, result) {
-            return result;
+        connection.query(this.sql, function(err, result) {
+            console.log(result);
+            return toString(result);
+
         });
     }
 }
