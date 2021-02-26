@@ -1,5 +1,6 @@
 var mysql = require("mysql");
 const { connect } = require("../routes");
+var bodyParser = require('body-parser');
 
 let connection = mysql.createConnection({
     host: 'localhost',
@@ -9,26 +10,10 @@ let connection = mysql.createConnection({
 });
 
 
-class test {
-    constructor() {
-        this.sql = "select * from test_table";
-        connection.query(this.sql, function(err, result) {
-            this.a = result;
-        });
-
-    }
-    showAll() {
-        connection.query(this.sql, function(err, result) {
-            console.log(result);
-            return toString(typeof(result));
-        });
-    }
-}
-
 class tess2 {
-    constructor(id, password, name, age) {
+    constructor(req) {
         this.sql = "insert into test_table (id, password, name, age) values (?,?,?,?)";
-        this.qu = { id, password, name, age };
+        this.qu = [req.body.uid, req.body.upassword, req.body.uname, req.body.uage];
         connection.query(this.sql, this.qu, function(err, result) {
             if (err) throw err;
             else console.log("haha");
@@ -36,4 +21,4 @@ class tess2 {
     }
 }
 
-module.exports = test;
+module.exports = tess2;
