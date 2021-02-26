@@ -20,20 +20,10 @@ class test {
     showAll() {
         connection.query(this.sql, function(err, result) {
             console.log(result);
-            return toString(typeof(result));
         });
     }
 }
 
-class tess2 {
-    constructor(id, password, name, age) {
-        this.sql = "insert into test_table (id, password, name, age) values (?,?,?,?)";
-        this.qu = { id, password, name, age };
-        connection.query(this.sql, this.qu, function(err, result) {
-            if (err) throw err;
-            else console.log("haha");
-        });
-    }
-}
+
 
 module.exports = test;
