@@ -10,15 +10,15 @@ let connection = mysql.createConnection({
 
 
 class tess2 {
-    constructor(a) {
+    constructor(req) {
         this.sql = "insert into test_table (id, password, name, age) values (?,?,?,?)";
-        console.log(typeof(a));
-        /*
-        this.qu = [req.body.uid, req.body.upassword, req.body.uname, parseInt(req.body.uage)];
+        this.qu = [req.body.userId, req.body.userPW, req.body.userName, parseInt(req.body.userAge)];
         connection.query(this.sql, this.qu, function(err, result) {
             if (err) throw err;
             else console.log("haha");
         });
-        */
     }
 }
+
+
+module.exports = tess2;

@@ -24,6 +24,4 @@ class test {
     }
 }
 
-
-
 module.exports = test;

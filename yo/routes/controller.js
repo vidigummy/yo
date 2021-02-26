@@ -23,3 +23,7 @@ exports.movieMake = function(req, res) {
         res.end(buf);
     });
 }
+
+exports.deleteMovie = function(req, res) {
+
+}
