@@ -19,11 +19,20 @@ exports.movieView = function(req, res) {
 
 exports.movieMake = function(req, res) {
     var a = new test2(req);
-    fs.readFile("./views/index.html", "utf-8", function(err, buf) {
+    var url = "localhost:3000/main";
+    request({ url: url, followRedirect: false }, function(err, res, body) {
+        console.log(res.headers.location);
+    });
+
+
+}
+
+exports.deleteMovie = function(req, res) {
+    fs.readFile("./views/delete.html", "utf-8", function(err, buf) {
         res.end(buf);
     });
 }
 
-exports.deleteMovie = function(req, res) {
-
+exports.deleteWhat = function(req, res) {
+    console.log(req);
 }
